@@ -1,6 +1,7 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import select
+from sqlalchemy.orm import load_only
 
 from app.models import Job
 
@@ -41,7 +42,17 @@ def recommend_jobs(
 ) -> List[dict]:
     resume_skills_set = set(resume_skills)
 
-    stmt = select(Job)
+    stmt = select(Job).options(
+        load_only(
+            Job.job_id,
+            Job.title,
+            Job.company_name,
+            Job.domain,
+            Job.query_category,
+            Job.skills,
+            Job.skills_needs_enrichment,
+        )
+    )
     if domain:
         stmt = stmt.where(Job.domain == domain)
     candidates = db.execute(stmt).scalars().all()
