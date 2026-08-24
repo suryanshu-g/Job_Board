@@ -10,8 +10,14 @@ from app.schemas.job import PaginatedJobs, JobOut
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 
-from sentence_transformers import SentenceTransformer
-_search_model = SentenceTransformer("all-MiniLM-L6-v2")
+_search_model = None
+
+def get_search_model():
+    global _search_model
+    if _search_model is None:
+        from sentence_transformers import SentenceTransformer
+        _search_model = SentenceTransformer("all-MiniLM-L6-v2")
+    return _search_model
 
 
 @router.get("", response_model=PaginatedJobs)
@@ -56,7 +62,7 @@ def search_jobs(
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
 ):
-    query_embedding = _search_model.encode(q).tolist()
+    query_embedding = get_search_model().encode(q).tolist()
 
     stmt = (
         select(Job)
