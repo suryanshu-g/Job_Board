@@ -1,0 +1,12 @@
+backend/.env
+backend/__pycache__/
+backend/venv/
+backend/*.pyc
+backend/.pytest_cache/
+backend/*.egg-info/
+backend/.vscode/
+backend/jobs_dump.backup
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+.DS_Store

@@ -1,0 +1,32 @@
+DROP TABLE IF EXISTS jobs;
+
+CREATE TABLE jobs (
+  job_id UUID PRIMARY KEY,
+  title TEXT,
+  company_name TEXT,
+  location TEXT,
+  description TEXT,
+  formatted_description TEXT,
+  domain TEXT,
+  employment_type TEXT,
+  schedule_type TEXT,
+  query_category TEXT,
+  skills TEXT[],
+  min_experience INT,
+  max_experience INT,
+  posted_at TIMESTAMP,
+  source_platform TEXT,
+  cross_posted_platforms TEXT[],
+  apply_link TEXT,
+  salary_from NUMERIC,
+  salary_to NUMERIC,
+  salary_source TEXT,
+  company_rating NUMERIC,
+  company_rating_source TEXT,
+  remote_type TEXT,
+  company_logo_url TEXT,
+  title_is_slug BOOLEAN,
+  description_needs_enrichment BOOLEAN,
+  skills_needs_enrichment BOOLEAN,
+  embedding VECTOR(768)
+);

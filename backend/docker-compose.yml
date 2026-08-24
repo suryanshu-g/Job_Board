@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: jobboard-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: jobboard
+      POSTGRES_PASSWORD: jobboard_dev_pw
+      POSTGRES_DB: jobboard
+    ports:
+      - "5433:5432"
+    volumes:
+      - jobboard_pgdata:/var/lib/postgresql/data
+
+volumes:
+  jobboard_pgdata:
