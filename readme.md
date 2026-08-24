@@ -4,7 +4,7 @@ An AI-powered job discovery platform built for AlmaBetter's Research Analyst Rou
 
 **🔗 Live App:** https://job-board-fawn-one.vercel.app
 **⚙️ API Docs (Swagger):** https://job-board-z2i5.onrender.com/docs
-**📹 Explanation Video:**
+**📹 Explanation Video:** https://drive.google.com/file/d/1jAsrFzQrQxWHtAp_sInLbm6aZ3A8zwv2/view?usp=drive_link
 **💻 Source:** https://github.com/suryanshu-g/Job_Board
 
 > **Note on first load:** the backend runs on a free-tier instance that sleeps when idle. The very first request after a period of inactivity may take 20–30 seconds to wake up — this is expected free-tier behavior, not a bug. Subsequent requests are fast.
