@@ -15,8 +15,8 @@ _search_model = None
 def get_search_model():
     global _search_model
     if _search_model is None:
-        from sentence_transformers import SentenceTransformer
-        _search_model = SentenceTransformer("all-MiniLM-L6-v2")
+        from fastembed import TextEmbedding
+        _search_model = TextEmbedding("sentence-transformers/all-MiniLM-L6-v2")
     return _search_model
 
 
@@ -62,7 +62,7 @@ def search_jobs(
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
 ):
-    query_embedding = get_search_model().encode(q).tolist()
+    query_embedding = list(get_search_model().embed([q]))[0].astype("float32").tolist()
 
     stmt = (
         select(Job)
